@@ -925,3 +925,40 @@ header.vq-scrolled{border-bottom-color:var(--line)!important;}
   outline-offset: -2px;
   background: rgba(182, 250, 209, 0.1);
 }
+
+/* ONE-SET-CHAINS */
+.vq-chain-track{overflow:visible;-webkit-mask-image:none;mask-image:none}
+.vq-chain-loop{animation:none;transform:none;width:auto;flex-wrap:wrap;will-change:auto}
+.vq-chain-set{flex-wrap:wrap;row-gap:14px;padding-right:0}
+
+/* POLISH-PACK */
+html{scroll-padding-top:88px;scrollbar-width:thin;scrollbar-color:#1C2620 #030504}
+::selection{background:rgba(182,250,209,.25);color:#EDF5F0}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+a,button{-webkit-tap-highlight-color:transparent}
+.btn{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease,color .18s ease}
+.btn-primary:hover{background:#C9FFE0;transform:translateY(-1px);box-shadow:0 6px 20px rgba(182,250,209,.18)}
+.btn-ghost:hover{background:rgba(182,250,209,.06);transform:translateY(-1px)}
+.btn:active{transform:translateY(0) scale(.98)}
+a:focus-visible,button:focus-visible{outline:2px solid #B6FAD1;outline-offset:3px}
+@media (max-width:900px){.btn{min-height:44px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.btn:active{transform:none}}
+
+
+/* CHAINS-CENTER */
+.vq-chain-track{justify-content:center;margin:0;padding-left:2px;padding-right:2px}
+.vq-chain-loop{width:100%;justify-content:center}
+.vq-chain-set{flex:0 1 auto;max-width:100%;justify-content:center;flex-wrap:wrap;padding-right:0}
+@media (max-width:900px){.vq-chain-track{padding-left:12px;padding-right:12px}}
+
+
+
+/* FEATURES-ONE-BLOCK */
+#features .features{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;background:var(--panel);border:1px solid rgba(182,250,209,.2);border-radius:10px;overflow:visible;padding:36px 40px!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .25s ease,box-shadow .28s ease}
+#features .features:hover{transform:translateY(-3px);box-shadow:var(--shadow-card)}
+#features .feature{background:transparent;border:0;border-radius:0;padding:0}
+#features .feature+.feature{border-left:1px solid var(--line);padding-left:32px}
+#features .feature:hover{transform:none;box-shadow:none}
+@media (max-width:1100px){#features .features{grid-template-columns:repeat(2,1fr);gap:28px 32px}#features .feature+.feature{border-left:0;padding-left:0}}
+@media (max-width:700px){#features .features{grid-template-columns:1fr;gap:24px;padding:26px 22px!important}}
