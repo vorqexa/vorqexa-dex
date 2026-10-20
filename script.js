@@ -58,6 +58,13 @@
       if (revealed === 0) items.forEach(function(el){ el.classList.add('vq-in'); });
     };
   }
+  function vqSetInert(on, overlay){
+    Array.prototype.forEach.call(document.body.children, function(el){
+      if (el === overlay || el.tagName === 'SCRIPT') return;
+      if (on) { el.setAttribute('inert', ''); el.setAttribute('data-vq-inert', ''); }
+      else if (el.hasAttribute('data-vq-inert')) { el.removeAttribute('inert'); el.removeAttribute('data-vq-inert'); }
+    });
+  }
   function getDocsOverlay() {
     var overlay = document.getElementById('vorqexa-docs-overlay');
     if (overlay) return overlay;
@@ -165,6 +172,7 @@
       overlay.style.transform = 'translateY(12px)';
     }
     overlay.style.display = 'block';
+    vqSetInert(true, overlay);
     if (!vqCalm) {
       void overlay.offsetWidth;
       overlay.style.transition = 'opacity .3s ease,transform .3s cubic-bezier(.22,.61,.36,1)';
@@ -181,6 +189,7 @@
   function closeDocs(fromPopstate) {
     var overlay = document.getElementById('vorqexa-docs-overlay');
     if (overlay) overlay.style.display = 'none';
+    vqSetInert(false, overlay);
     document.body.style.overflow = '';
     if (!fromPopstate && location.hash === '#docs') {
       history.back();
@@ -323,6 +332,13 @@ document.addEventListener('click',function(e){var btn=e.target.closest('.btn');i
 'use strict';
 // Warm the app origin as soon as the user shows intent, without intercepting navigation.
 var APP_ORIGIN='https://dex.vorqexa.xyz';
+  (function(){
+    function setLaunchLinks(){
+      document.querySelectorAll('a[data-launch]').forEach(function(a){ a.setAttribute('href', APP_ORIGIN + '/'); });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setLaunchLinks);
+    else setLaunchLinks();
+  })();
 var warmed=false;
 function warm(){
   if(warmed) return;
@@ -336,15 +352,15 @@ function warm(){
   } catch(e) {}
 }
 document.addEventListener('pointerover',function(e){
-  var a=e.target.closest && e.target.closest('a[href^="https://dex.vorqexa.xyz/"]');
+  var a=e.target.closest && e.target.closest('a[data-launch]');
   if(a) warm();
 },{passive:true});
 document.addEventListener('touchstart',function(e){
-  var a=e.target.closest && e.target.closest('a[href^="https://dex.vorqexa.xyz/"]');
+  var a=e.target.closest && e.target.closest('a[data-launch]');
   if(a) warm();
 },{passive:true});
 document.addEventListener('pointerdown',function(e){
-  var a=e.target.closest && e.target.closest('a[href^="https://dex.vorqexa.xyz/"]');
+  var a=e.target.closest && e.target.closest('a[data-launch]');
   if(a) warm();
 },{passive:true});
 })();

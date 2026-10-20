@@ -1,0 +1,13 @@
+{
+  "name": "vorqexa-site",
+  "private": true,
+  "scripts": {
+    "build:docs": "python3 docs-src/build.py",
+    "check": "node scripts/check.mjs && htmlhint index.html",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "htmlhint": "^1.1.4"
+  }
+}

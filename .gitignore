@@ -1,0 +1,8 @@
+node_modules/
+playwright-report/
+test-results/
+.DS_Store
+*.zip
+*.log
+*.bak
+__pycache__/
